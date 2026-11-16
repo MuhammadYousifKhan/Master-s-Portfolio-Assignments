@@ -1,0 +1,15 @@
+pandas
+openpyxl
+numpy
+matplotlib
+seaborn
+plotly
+kaleido
+streamlit
+python-docx
+nbformat
+nbclient
+ipykernel
+pygments
+pillow
+playwright

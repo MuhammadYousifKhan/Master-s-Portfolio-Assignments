@@ -67,6 +67,16 @@ print("Unique brands:", df_raw["Item_Name"].nunique())
 print("Unique category labels:", df_raw["Catatory"].nunique())
 print("Unique locations:", df_raw["itemLocation"].nunique())
 """)
+md("### Checking for duplicates")
+code("""
+print("Exact duplicate rows:", df_raw.duplicated().sum())
+print("Duplicates ignoring lastUpdated:", df_raw.drop(columns="lastUpdated").duplicated().sum())
+print("Repeated listing titles:", df_raw["details"].duplicated().sum())
+key = ["Item_Name", "details", "price", "itemLocation"]
+same = df_raw[df_raw.duplicated(key, keep=False)].sort_values("details")
+print("Rows sharing brand, title, price and location:", len(same))
+same[["Item_Name", "price", "sold", "itemLocation", "lastUpdated"]]
+""")
 code("""
 df_raw.describe().round(2)
 """)
@@ -148,6 +158,19 @@ axes[1].set_title("Listings by item location (top 6)")
 plt.tight_layout()
 plt.savefig(FIG_DIR / "fig02_categories_locations.png", dpi=150)
 plt.show()
+""")
+md("### Missing values before and after cleaning")
+code("""
+check = pd.DataFrame({
+    "raw column": ["Item_Name", "Catatory", "price", "sold", "available", "lastUpdated"],
+    "clean column": ["brand", "category", "price", "sold", "available", "days_since_update"],
+    "method": ["Unbranded", "grouped as Other", "price text, CAD", "stock text, else 0", "Last One=1, median", "median"],
+})
+check["before"] = df_raw[check["raw column"]].isna().sum().values
+check["after"] = df[check["clean column"]].isna().sum().values
+print("Rows before cleaning:", len(df_raw), "| rows after cleaning:", len(df))
+print("Missing values in the model features after cleaning:", df[["price", "sold", "available", "days_since_update", "size_ml"]].isna().sum().sum())
+check
 """)
 
 md("## 4. Outliers and skewness")

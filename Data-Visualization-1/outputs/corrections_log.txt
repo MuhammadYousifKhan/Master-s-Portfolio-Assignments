@@ -1,0 +1,74 @@
+[OK] The effect appears in every mode and is largest for bike share (1.1 to 4.9 minutes) and metro (3.0 to 7.5).
+      -> The effect appears in every mode. In relative terms it is largest for bike share (1.1 to 4.9 minutes) and e-scooters (1.3 to 5.0), and in absolute terms for park and ride and tram (about 4.9 minutes more each).
+[OK] it carries 63.0% of passengers delivers 70.3%
+      -> it carries 63.0% of passengers, delivers 70.3%
+[OK] 74.9% on time rating 3.74
+      -> 74.9% on time, rating 3.74
+[OK] 2025 and year, month
+      -> 2025, and year, month
+[OK] ranking and long labels and a zero baseline
+      -> ranking and long labels, and a zero baseline
+[OK] shows median spread and extremes
+      -> shows median, spread and extremes
+[OK] mode by mode starting with buses
+      -> mode by mode, starting with buses
+[OK] sorted bars rank box plots compare distributions scatter plots and heatmaps show relationships and a diverging bar
+      -> sorted bars rank, box plots compare distributions, scatter plots and heatmaps show relationships, and a diverging bar
+[OK] position or length the accurately perceived visual channels (Cleveland and McGill 1984)
+      -> position or length, the most accurately perceived visual channels (Cleveland and McGill, 1984)
+[OK] before reading (2014) and because
+      -> before reading (Munzner, 2014), and because
+[OK] managers and councillors benefit
+      -> managers and councillors, benefit
+[OK] (Figures 5 and 9) the KPI cards
+      -> (Figures 5 and 9), the KPI cards
+[OK] analysts and engineers can use
+      -> analysts and engineers, can use
+[OK] contrast values are marked
+      -> contrast, values are marked
+[OK] meaning and text is sized
+      -> meaning, and text is sized
+[OK] For the decision areas stated it has
+      -> For the decision areas stated, it has
+[OK] respond quickly KPI cards
+      -> respond quickly, KPI cards
+[OK] was done,. Effectiveness
+      -> was done, so effectiveness
+[OK] are indicators not proof
+      -> are indicators, not proof
+[OK] No significance. Confidence intervals were made.
+      -> No significance tests or confidence intervals were produced.
+[OK] limit exploration so Plotly
+      -> limit exploration, so Plotly
+[OK] distributionsre multimodal
+      -> distributions are multimodal
+[OK] Socially accessibility
+      -> Socially, accessibility
+[OK] and environmentally CO
+      -> and environmentally, CO
+[OK] Locally route planners
+      -> Locally, route planners
+[OK] nationally regulators
+      -> nationally, regulators
+[OK] globally shared indicators allow cities to progress
+      -> globally, shared indicators allow cities to compare progress
+[OK] such as axes or unnormalised totals can distort
+      -> such as truncated axes or unnormalised totals, can distort
+[OK] Transport mode, more than city or route type explains
+      -> Transport mode, more than city or route type, explains
+[OK] finance and sustainability buses are the least reliable and bike share
+      -> finance and sustainability; buses are the least reliable; and bike share
+[OK] justified by task and audience limitations were.
+      -> justified by task and audience, and the limitations were stated.
+[OK] Designed visualisation can help
+      -> Well-designed visualisation can help
+[OK] Cleveland, W.S. And McGill
+      -> Cleveland, W.S. and McGill
+[OK] Okabe, M. And Ito
+      -> Okabe, M. and Ito
+[OK] ‘ Perception: theory
+      -> ‘Graphical perception: theory
+[HITS=3] 2Nd edn
+      -> 2nd edn
+[OK] [Heading] CONCLUSION
+      -> [Heading] 5. CONCLUSION

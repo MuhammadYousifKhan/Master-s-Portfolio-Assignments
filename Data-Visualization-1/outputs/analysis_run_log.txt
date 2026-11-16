@@ -1,0 +1,89 @@
+﻿Shape: (5000, 18)
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 18 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   Record_ID                 5000 non-null   object 
+ 1   Date                      5000 non-null   int64  
+ 2   City                      5000 non-null   object 
+ 3   Country                   5000 non-null   object 
+ 4   Transport_Mode            5000 non-null   object 
+ 5   Route_Type                5000 non-null   object 
+ 6   Weather                   5000 non-null   object 
+ 7   Event_Day                 5000 non-null   object 
+ 8   Passengers                5000 non-null   int64  
+ 9   Trips                     5000 non-null   int64  
+ 10  Average_Delay_Minutes     5000 non-null   float64
+ 11  On_Time_Percentage        5000 non-null   float64
+ 12  Ticket_Revenue_EUR        5000 non-null   float64
+ 13  Operating_Cost_EUR        5000 non-null   float64
+ 14  CO2_Saved_KG              5000 non-null   float64
+ 15  Energy_Consumption_KWh    5000 non-null   float64
+ 16  Customer_Rating           5000 non-null   float64
+ 17  Accessibility_Complaints  5000 non-null   int64  
+dtypes: float64(7), int64(4), object(7)
+memory usage: 703.3+ KB
+
+Missing values:
+ Record_ID                   0
+Date                        0
+City                        0
+Country                     0
+Transport_Mode              0
+Route_Type                  0
+Weather                     0
+Event_Day                   0
+Passengers                  0
+Trips                       0
+Average_Delay_Minutes       0
+On_Time_Percentage          0
+Ticket_Revenue_EUR          0
+Operating_Cost_EUR          0
+CO2_Saved_KG                0
+Energy_Consumption_KWh      0
+Customer_Rating             0
+Accessibility_Complaints    0
+dtype: int64
+Duplicate rows: 0 | duplicate IDs: 0
+Date range: 2024-01-01 to 2025-12-31
+City ['Amsterdam', 'Barcelona', 'Berlin', 'Hamburg', 'Lyon', 'Madrid', 'Milan', 'Munich', 'Paris', 'Rome', 'Rotterdam', 'Vienna']
+Country ['Austria', 'France', 'Germany', 'Italy', 'Netherlands', 'Spain']
+Transport_Mode ['Bike Share', 'Bus', 'E-Scooter', 'Metro', 'Park and Ride', 'Tram']
+Route_Type ['Airport Connector', 'Central Route', 'Commuter Corridor', 'Suburban Feeder', 'Tourist Zone', 'University Area']
+Weather ['Clear', 'Cloudy', 'Heatwave', 'Rain', 'Snow', 'Windy']
+Event_Day ['No', 'Yes']
+Cities per country (max): 1
+Passengers < Trips: 0
+On-time outside 0-100: 0
+Rating outside 1-5: 0
+Zero-energy records: 759 (all Bike Share: True )
+IQR outliers Passengers: pooled=525, within-mode=90
+IQR outliers Ticket_Revenue_EUR: pooled=591, within-mode=90
+IQR outliers Average_Delay_Minutes: pooled=11, within-mode=104
+IQR outliers Customer_Rating: pooled=10, within-mode=62
+
+KPIs: {'passengers': np.int64(40909721), 'revenue': np.float64(111640614.25999999), 'cost': np.float64(112110015.97), 'co2': np.float64(4481974.300000001), 'delay': np.float64(4.35332), 'ontime': np.float64(82.05736), 'rating': np.float64(4.0084), 'complaints': np.int64(62661)}
+                Passengers  Avg_Delay  ...        CO2  Complaints
+Transport_Mode                         ...                       
+Bike Share          268765       1.62  ...    49132.7         457
+Bus                5073394       6.58  ...   414163.1        8859
+E-Scooter           163942       1.94  ...    21651.3         301
+Metro             25757522       3.73  ...  3150917.3       38240
+Park and Ride      3265220       5.17  ...   199191.2        5183
+Tram               6380878       4.79  ...   646918.7        9621
+
+[6 rows x 8 columns]
+          Average_Delay_Minutes  On_Time_Percentage  Customer_Rating
+Weather                                                             
+Clear                      3.71               84.17             4.15
+Cloudy                     3.89               83.46             4.12
+Heatwave                   4.91               80.19             3.76
+Rain                       5.40               78.70             3.70
+Snow                       8.14               69.97             3.36
+Windy                      4.86               80.42             4.02
+           Average_Delay_Minutes  On_Time_Percentage  Customer_Rating
+Event_Day                                                            
+No                          4.22               82.49             4.02
+Yes                         5.53               78.21             3.87
+Figures saved to ./figs/

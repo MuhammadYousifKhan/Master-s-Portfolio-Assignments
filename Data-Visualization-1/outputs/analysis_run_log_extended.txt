@@ -1,0 +1,182 @@
+Shape: (5000, 18)
+<class 'pandas.DataFrame'>
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 18 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   Record_ID                 5000 non-null   str    
+ 1   Date                      5000 non-null   int64  
+ 2   City                      5000 non-null   str    
+ 3   Country                   5000 non-null   str    
+ 4   Transport_Mode            5000 non-null   str    
+ 5   Route_Type                5000 non-null   str    
+ 6   Weather                   5000 non-null   str    
+ 7   Event_Day                 5000 non-null   str    
+ 8   Passengers                5000 non-null   int64  
+ 9   Trips                     5000 non-null   int64  
+ 10  Average_Delay_Minutes     5000 non-null   float64
+ 11  On_Time_Percentage        5000 non-null   float64
+ 12  Ticket_Revenue_EUR        5000 non-null   float64
+ 13  Operating_Cost_EUR        5000 non-null   float64
+ 14  CO2_Saved_KG              5000 non-null   float64
+ 15  Energy_Consumption_KWh    5000 non-null   float64
+ 16  Customer_Rating           5000 non-null   float64
+ 17  Accessibility_Complaints  5000 non-null   int64  
+dtypes: float64(7), int64(4), str(7)
+memory usage: 946.0 KB
+       Passengers  Average_Delay_Minutes  On_Time_Percentage  Customer_Rating
+count     5000.00                5000.00             5000.00          5000.00
+mean      8181.94                   4.35               82.06             4.01
+std      10018.72                   2.39                7.93             0.40
+min         64.00                   0.00               55.00             2.70
+25%       1411.75                   2.60               76.50             3.70
+50%       4398.00                   4.40               82.00             4.00
+75%      10077.50                   6.00               87.90             4.30
+max      66416.00                  12.50               99.00             4.90
+Missing values in any column: 0
+Record_ID                   0
+Date                        0
+City                        0
+Country                     0
+Transport_Mode              0
+Route_Type                  0
+Weather                     0
+Event_Day                   0
+Passengers                  0
+Trips                       0
+Average_Delay_Minutes       0
+On_Time_Percentage          0
+Ticket_Revenue_EUR          0
+Operating_Cost_EUR          0
+CO2_Saved_KG                0
+Energy_Consumption_KWh      0
+Customer_Rating             0
+Accessibility_Complaints    0
+Duplicate rows: 0 | duplicate IDs: 0
+Date range: 2024-01-01 to 2025-12-31
+City ['Amsterdam', 'Barcelona', 'Berlin', 'Hamburg', 'Lyon', 'Madrid', 'Milan', 'Munich', 'Paris', 'Rome', 'Rotterdam', 'Vienna']
+Country ['Austria', 'France', 'Germany', 'Italy', 'Netherlands', 'Spain']
+Transport_Mode ['Bike Share', 'Bus', 'E-Scooter', 'Metro', 'Park and Ride', 'Tram']
+Route_Type ['Airport Connector', 'Central Route', 'Commuter Corridor', 'Suburban Feeder', 'Tourist Zone', 'University Area']
+Weather ['Clear', 'Cloudy', 'Heatwave', 'Rain', 'Snow', 'Windy']
+Event_Day ['No', 'Yes']
+Cities per country (max): 1
+Passengers < Trips: 0
+On-time outside 0-100: 0
+Rating outside 1-5: 0
+Zero-energy records: 759 (all Bike Share: True )
+IQR outliers Passengers: pooled=525, within-mode=90
+IQR outliers Ticket_Revenue_EUR: pooled=591, within-mode=90
+IQR outliers Average_Delay_Minutes: pooled=11, within-mode=104
+IQR outliers Customer_Rating: pooled=10, within-mode=62
+
+KPIs: {'passengers': 40909721.0, 'revenue': 111640614.26, 'cost': 112110015.97, 'co2': 4481974.3, 'delay': 4.35, 'ontime': 82.06, 'rating': 4.01, 'complaints': 62661.0}
+                Passengers  Avg_Delay  On_Time  Rating      Revenue         Cost        CO2  Complaints  Pass_Share_%
+Transport_Mode                                                                                                       
+Bike Share          268765       1.62    90.85    4.35    310355.03   5912287.24    49132.7         457           0.7
+Bus                5073394       6.58    74.92    3.74  12002118.92  11992457.44   414163.1        8859          12.4
+E-Scooter           163942       1.94    89.71    4.29    261278.13   3536959.56    21651.3         301           0.4
+Metro             25757522       3.73    84.09    4.09  73334170.86  69029226.89  3150917.3       38240          63.0
+Park and Ride      3265220       5.17    79.46    3.90  10066523.80   8283138.05   199191.2        5183           8.0
+Tram               6380878       4.79    80.63    3.94  15666167.52  13355946.79   646918.7        9621          15.6
+Top months (millions): {'2024-03': 2.08, '2025-04': 2.02, '2024-05': 1.9}
+Lowest month (millions): {'2025-10': 1.41}
+      Passengers  Records  Per_Record
+Year                                 
+2024    20974355     2567      8171.0
+2025    19935366     2433      8194.0
+Change 2024->2025: passengers -5.0%, records -5.2%
+Passengers per record, April: 9354.0 | October: 6805.0 | October vs April: -27%
+City
+Paris        4.49
+Berlin       4.49
+Munich       3.60
+Barcelona    3.53
+Rome         3.42
+Vienna       3.39
+Amsterdam    3.36
+Madrid       3.29
+Milan        3.10
+Hamburg      3.00
+Rotterdam    2.70
+Lyon         2.54
+Top two share: 22.0% | bottom two share: 12.8%
+Paris vs Lyon: +77%
+Germany share: 27.1%
+Delay by city: 4.11 (Barcelona) to 4.58 (Lyon)
+On-time by city: 81.3% to 82.8%
+                 Q1  Median   Q3  Mean  On_Time_%
+Transport_Mode                                   
+Bike Share      0.5     1.5  2.4  1.62      90.85
+E-Scooter       0.7     1.7  2.9  1.94      89.71
+Metro           2.7     3.6  4.6  3.73      84.09
+Tram            3.6     4.7  5.7  4.79      80.63
+Park and Ride   4.0     5.0  6.0  5.17      79.46
+Bus             5.5     6.5  7.5  6.58      74.92
+Overall r = -0.82, slope = -0.14 rating points per minute of delay
+Within-mode r: {'Bike Share': -0.69, 'Bus': -0.74, 'E-Scooter': -0.73, 'Metro': -0.75, 'Park and Ride': -0.76, 'Tram': -0.76}
+Number of variable pairs: 45
+Ticket_Revenue_EUR          1.00
+Operating_Cost_EUR          0.98
+CO2_Saved_KG                0.99
+Energy_Consumption_KWh      0.99
+Accessibility_Complaints    0.87
+On_Time_Percentage   -0.97
+Customer_Rating      -0.82
+                   Revenue        Cost        Net  Recovery
+Transport_Mode                                             
+Bike Share        310355.0   5912287.2 -5601932.2       5.2
+E-Scooter         261278.1   3536959.6 -3275681.4       7.4
+Bus             12002118.9  11992457.4     9661.5     100.1
+Park and Ride   10066523.8   8283138.0  1783385.8     121.5
+Tram            15666167.5  13355946.8  2310220.7     117.3
+Metro           73334170.9  69029226.9  4304944.0     106.2
+Total revenue 111.64M, cost 112.11M, net -0.47M, recovery 99.6%
+Micro-mobility combined net: -8.88M
+Records with a loss: 45%
+Loss share by mode (%): {'Bike Share': 100.0, 'Bus': 51.0, 'E-Scooter': 100.0, 'Metro': 27.0, 'Park and Ride': 3.0, 'Tram': 6.0}
+Total CO2 saved: 4.48 million kg
+                Pass_%  CO2_%  CO2_per_pass_kg
+Transport_Mode                                
+Metro             63.0   70.3            0.122
+Tram              15.6   14.4            0.101
+Bus               12.4    9.2            0.082
+Park and Ride      8.0    4.4            0.061
+Bike Share         0.7    1.1            0.183
+E-Scooter          0.4    0.5            0.132
+          Average_Delay_Minutes  On_Time_Percentage  Customer_Rating
+Weather                                                             
+Clear                      3.71               84.17             4.15
+Cloudy                     3.89               83.46             4.12
+Heatwave                   4.91               80.19             3.76
+Rain                       5.40               78.70             3.70
+Snow                       8.14               69.97             3.36
+Windy                      4.86               80.42             4.02
+                Clear   Snow  Rise  Ratio
+Transport_Mode                           
+Bus              5.93  10.33  4.40   1.74
+Park and Ride    4.48   9.40  4.92   2.10
+Tram             4.07   8.99  4.92   2.21
+Metro            3.03   7.45  4.43   2.46
+E-Scooter        1.27   5.02  3.76   3.97
+Bike Share       1.11   4.86  3.76   4.38
+           Delay  On_Time  Rating  Pass_per_Record
+Event_Day                                         
+No          4.22    82.49    4.02          7968.86
+Yes         5.53    78.21    3.87         10057.93
+Event-day delay change: +31% | passengers per record: +26%
+Total complaints: 62661 | metro share: 61.0%
+Transport_Mode     Metro   Tram    Bus  Park and Ride  Bike Share  E-Scooter
+Route_Type                                                                  
+Airport Connector  144.0  157.0  166.0          157.0       109.0      132.0
+Central Route      143.0  142.0  169.0          156.0       123.0      130.0
+Commuter Corridor  146.0  151.0  164.0          154.0       134.0      119.0
+Suburban Feeder    151.0  167.0  212.0          187.0       493.0      540.0
+Tourist Zone       156.0  148.0  168.0          154.0       140.0      132.0
+University Area    155.0  144.0  179.0          156.0       142.0      142.0
+Rates on other routes: 109 to 179
+Suburban Feeder Bike Share: 493 per 100k, 3.5 to 4.5 times other routes
+Suburban Feeder E-Scooter: 540 per 100k, 3.8 to 4.6 times other routes
+Suburban Feeder Bus: 212 per 100k, 1.2 to 1.3 times other routes
+Suburban Feeder micro-mobility: 196 records, 51558 passengers
+Figures saved to ./figs/

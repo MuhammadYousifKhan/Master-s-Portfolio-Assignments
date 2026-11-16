@@ -1,0 +1,249 @@
+Executive Summary
+This report analyses 5,000 EcoMove service records from 01 January 2024 to 31 December 2025 in Python. The records cover 12 cities in 6 countries and 6 transport modes. Nine static visuals and a Streamlit dashboard support decisions on route planning, reliability, sustainability, accessibility and investment.
+Five findings stand out. Bus is the weakest service, ranking last on punctuality in all 24 months and falling in the accessibility priority zone in every city. Snow lowers on-time performance by 11.3 to 15.7 points, whatever the mode. Mass transit covers its costs in every city (107.2% to 109.4%), and city deficits are associated with micromobility's share of cost. Event days raise demand per record by 25.3% to 36.6% without any fare premium. Bus saves 1.07 kg of CO2 per kWh, about half the Metro figure (2.19 kg).
+Context and Aims
+EcoMove runs metro, tram, bus, park and ride, bike share and e-scooter services in 6 European countries. The brief asks for a Python investigation (Task 1) and a reflective report (Task 2). The design serves two audiences. Senior managers need a few clear messages, each tied to a decision. Analysts need the method, the data checks and the code, which are in Appendices A and B. All figures were calculated in Python and checked automatically against the computed results.
+Part A: Visual Investigation (Task 1)
+Data preparation and quality checks
+The workbook holds 5,000 rows and 18 columns. It has 0 missing values and 0 duplicate rows. Dates were stored as Excel serial numbers and were converted; the records cover 729 of the 731 days in the period.
+Zero values were kept because they fit the service type. All 759 zero-energy rows are Bike Share, so Bike Share is left out of energy ratios, and all 566 zero-complaint rows are micromobility. Groups have different record counts, so comparisons use per-record means or ratios such as cost recovery (revenue divided by operating cost) and complaints per 1,000 passengers.
+Code
+
+Code
+
+Output
+
+Code
+
+Output
+
+Code
+
+Output
+
+Code
+
+Output
+
+
+Design approach
+Each visual answers one management question. The main comparisons use position on a common scale, which Cleveland and McGill (1984) found to be the most accurately read encoding; colour intensity is reserved for heatmaps. Colours come from Paul Tol's colour-blind-safe scheme (Tol, 2021) and the cividis map (Nuñez, Anderton and Renslow, 2018), so red and green never carry meaning alone. Plain titles and direct labels keep clutter down (Few, 2006; Tufte, 2001). Table 1 maps each visual to the brief.
+Visuals mapped to the brief's techniques
+Visual
+Chart type
+Technique
+Management question
+1
+Small multiples and dot plot
+Time series
+Is reliability drifting, and how much does weather matter?
+2
+Indexed heatmaps
+Comparison
+When and where is demand highest?
+3
+Dumbbell
+Comparison
+Who absorbs event crowds?
+4
+Slope chart
+Comparison over time
+Which cities crossed break-even?
+5
+Log-log scatter
+Relationship
+Which modes turn energy into CO2 savings?
+6
+Split violin
+Distribution
+Do margins depend on price or cost?
+7
+Lollipop
+Performance indicator
+What sets city cost recovery?
+8
+Quadrant bubble chart
+Performance indicator
+Where should accessibility money go first?
+9
+Radar small multiples
+Performance profile
+What is each mode good and bad at?
+D
+Streamlit dashboard
+Interactive dashboard
+All of the above, filtered
+
+Visual 1: reliability over time and in bad weather
+
+Monthly on-time percentage by mode, and mean on-time by weather and mode.
+Code
+
+Output
+
+
+Purpose and design. The question is whether weak reliability persists, and how exposed it is to weather. Small multiples share one axis, so each mode can be read alone (Tufte, 2001); the dot plot places every mode on one scale for each weather type. On-time percentage is used as the delay measure because the two are almost perfectly correlated (r = -0.97 per record).
+What it shows. There was little change in network reliability. It averaged 82.2% in 2024 and 81.9% in 2025, and no month fell outside 80.7% to 82.8%. Bus was last every month and its best month (76.3%) was lower than Tram's worst month (79.7%). Changes in weather affect timing more than changes in the month. In snow, each mode sees a drop in on-time by 11.3 to 15.7 points, Bus drops to 62.4% and the mean rating drops from 4.15 to 3.36. Reliability gaps are between the modes and not between cities, as city averages fall between 81.3% and 82.8%.
+Implication. Bus requires a long-term programme, not seasonal solutions, and plans for winter should be for all modes.
+Visual 2: when and where demand concentrates
+
+Demand index by weekday and mode, and by city and mode (100 = the mode's own average per record).
+Code
+
+Output
+
+
+Purpose and design. Planners should be able to observe when and where demand peaks. The modes are indexed to their respective averages, so that the colour scale for small modes is the same as the colour scale for large modes, and comparisons between cities are not affected by mode mix.
+What it shows. Weekend records have 25.4% fewer passengers than weekday records. The fall is largest on Metro (30.6%) and Park and Ride (29.2%), yet weekend on-time (81.9%) is no better than weekday (82.1%). The high-demand cities are Paris and Berlin, with 120 or more points in each mode, while Rotterdam has 72-82 points. Country does not say a lot about demand: in France, Paris averages 136 and Lyon 84.
+Implication. The frequency of weekend Metro and Park and Ride can be discussed, and in the case of peak period capacity planning, the starting point should be Paris and Berlin.
+Visual 3: who gains most on event days
+
+Mean passengers per record on normal and event days by mode (log scale), with uplift.
+Code
+
+Output
+
+
+Purpose and design. For operations teams, the question is which modes are event crowd absorbers. A dumbbell places the normal level, the event level and the gap on one line per mode, while a log scale keeps Metro and micromobility on the same axis.
+What it shows. Uplift is between 25.3% (E-Scooter) and 36.6% (Bike Share), and Park and Ride increases by 34.3%. Metro gets the largest absolute increase, having 8,016 additional passengers per record. There is no price premium on the additional demand, with revenue per passenger of €2.71 on event days against €2.73 on other days.
+Implication. Event planning should begin with Metro and Park and Ride capacity, and try an event fare.
+Visual 4: which cities crossed break-even
+
+Cost recovery by city, 2024 against 2025, with the 100% break-even line.
+Code
+
+Output
+
+
+Purpose and design. A direction of travel, not a one-year ranking, is needed for finance leads. A slope chart displays a rise or fall as a line angle, is marked at both ends with the values, and only colours the cities that cross the break-even mark (Kirk, 2019).
+What it shows. In both years, network cost recovery was 99.6%, although there was some movement for individual cities. Munich fell from 104.0% to 99.0%, Milan from 100.6% to 96.1% and Amsterdam from 101.3% to 98.0%, while Berlin, Paris and Vienna rose above 100%. In every city, mass transit alone recovered 106.3% or more. In the same period, the share of Milan's records from micromobility grew from 24% to 30%.
+Implication. Munich, Milan and Amsterdam should be on a finance watchlist for 2026, and the review must begin with service mix.
+Visual 5: energy used against CO2 saved
+
+Energy consumption against CO2 saved per record (log-log), by mode, with fitted lines.
+Code
+
+Output
+
+
+Purpose and design. Sustainability leads need to understand which modes are translating energy into carbon savings. A scatter represents the relationship, as well as the spread of the relationship, and the log axes indicate a near-linear relationship over three orders of magnitude. The 759 zero-energy Bike Share records are not included.
+What it shows. The network saves 1.9 kg of CO2 per kWh. Metro saves 2.19 kg, Park and Ride 1.72 kg and Tram 1.66 kg. Bus saves 1.07 kg, the lowest amount among the energy-reporting modes, but accounts for 16.6% of all the energy used.
+Implication. Energy efficiency of the bus fleet should be a priority for sustainability investment.
+Visual 6: the shape of unit economics
+
+Split violins of revenue and cost per passenger by mode (log scale), with quartiles.
+Code
+
+Output
+
+
+Purpose and design. The question is: is the margin based on price, or is it based on cost? Split violins show full distributions, which would be masked by a bar of averages (Healy, 2018).
+What it shows. Costs vary widely and fares are in narrow bands. Between modes, the margin gap follows fares: the median fare is €3.07 for Park and Ride and €2.36 for Bus. The cost per passenger in Bus varies between €1.91 and €2.88, and the fares vary between €2.11 and €2.62, with 50.8% of Bus records losing money.
+Implication. Fare policy helps to create a difference between modes, but for Bus the fastest lever is cost per passenger.
+Visual 7: what sets city cost recovery
+
+Cost recovery by city for all modes and mass transit only, and micromobility share of cost.
+Code
+
+Output
+
+
+Purpose and design. Investment boards should have an idea of whether loss-making cities have weak core networks or not. Two markers are used for each city to indicate the impact of micromobility, and an aligned bar panel displays the share of costs for micromobility.
+What it shows. Overall, 7 out of 12 cities suffer a net loss; Paris is narrowly missing break-even (99.95%). Every city recovers 107.2% to 109.4% without micromobility. Micromobility's percentage of city cost varies between 7.2% in Munich and 10.0% in Madrid and is inversely correlated with recovery at r = -0.91. Part of that link is arithmetic, with only 12 cities and micromobility recovering so little of its cost. It is an association and not evidence of cause.
+Implication. City funding discussions should consider micromobility as a separately funded service.
+Visual 8: an accessibility priority matrix
+
+Complaints volume (log) against complaints per 1,000 passengers for 72 city-mode services.
+Code
+
+Output
+
+
+Purpose and design. Accessibility teams should distinguish between services that have a lot of complaints and those that have lots of complaints in relation to their use. There are four action groups when splitting at the median volume (582) and the network rate (1.53 per 1,000).
+What it shows. In the act-first quadrant, 19 services were located and 12 of these were Bus, which is the Bus service in every city. Only 1 Metro service (Berlin) is represented there, so the high number of complaints in Metro is primarily related to the number of passengers. Small E-Scooter services in Hamburg (2.38) and Milan (2.22) have the highest rates.
+Implication. The primary accessibility programme should be Bus, with the E-Scooter hotspots being local fixes.
+Visual 9: mode profiles at a glance
+
+Radar small multiples scoring each mode from 0 (worst) to 1 (best) on five indicators.
+Code
+
+Output
+
+Code
+
+Output
+
+
+Purpose and design. Executives would like to see the good and the bad of each mode in one view. Radar charts can provide a brief summary of shape but can be misleading about area (Few, 2005), so the radar is only used as an overview, in conjunction with the headline table above.
+What it shows. Bus has the smallest shape. Bike Share leads on punctuality (90.9%) and rating (4.35), but recovers just 5.2% of its costs. Park and Ride (121.5%) and Tram (117.3%) lead on cost recovery. The lowest score of Metro is 0.5, meaning that Metro does not reach the bottom of any axis.
+Implication. There is no one mode that is best at all things, and investment decisions have to be based on trade-offs that are made openly.
+Interactive dashboard
+The dashboard was created using Streamlit (Streamlit, 2026; Appendix B). It is based on the overview, zoom and filter, details-on-demand pattern (Heer and Shneiderman, 2012). All views share seven sidebar filters (dates, country, city, mode, route type, weather and event day). Six KPI cards compare the selection to the network, and five tabs correspond to the decision areas identified in the brief: route planning, reliability, sustainability, accessibility and investment. Plotly charts display exact values when hovered over, and captions are dynamically updated from the filtered data.
+
+Dashboard default view: KPI cards and Route planning tab.
+
+Dashboard filtered to Bus on event days, Reliability tab.
+Part B: Reflective Report (Task 2)
+Reaching technical and non-technical readers
+The visuals are sequenced: reliability, demand, money, carbon and accessibility, then a summary. Each chart has a simple title, direct labels and one implication, for non-technical managers. Lines, dumbbells and lollipops were selected because these are familiar shapes and readers judge position more accurately than area or angle (Cleveland and McGill, 1984; Ware, 2021). Technical readers get indexed values, log scales, fitted lines, quartiles and record counts. Cairo (2016) contends that a truthful chart should be honest about scale and uncertainty, so thin data, like monthly E-Scooter records, is flagged and not hidden. Each mode keeps one colour throughout, and titles explain highlight colours without relying on cultural readings of red and green.
+Some choices come at a cost. Log scales and the radar chart are more difficult for non-technical readers, therefore each has a plain caption and the radar chart is not used as the only evidence. Absolute size is not displayed when values are indexed, so the text always contains the actual values. A dashboard also requires more from the people using it than a static report; that is why the default view is meant to answer the basic questions without any filters.
+Key findings
+Demand. In each mode, Paris and Berlin are the leading cities. Weekend records are 25.4% quieter and event days are 25.3% to 36.6% busier.
+Delays. In all 24 months, Bus is last, and snow costs every mode 11.3-15.7 on-time points.
+Cities, cost and revenue. In all cities, mass transit recovers 107.2% to 109.4% of its costs. The cost share of micromobility is related to city deficits (r = -0.91).
+Customers and accessibility. The mean ratings are 4.15 in clear weather and 3.36 in snow, with all Bus services being accessibility priorities.
+Sustainability. Bus saves 1.07 kg of CO2 per kWh, against Metro's 2.19 kg.
+Dashboard effectiveness
+Since one set of filters affects each view, a manager can pose a question without an analyst. Filtering to Bus on event days (Figure 11) results in 147 records, 71.7% of which were on time, 10.3 points lower than the network, and a mean rating of 3.62. The default KPI values were the same as the notebook's. The dashboard also has its limits. In that view, some months have only 2 records, and heavy filtering leaves small samples. It has not been tested by managers yet, and it reads a static file rather than live data. The next step is user testing, which is recommended by Few (2006), who argues that dashboards work when they are tested and adapted to use.
+Recommendations and strategic decisions
+Recommendations with evidence, owners and measures
+#
+Evidence
+Action
+Owner
+Measure
+When
+1
+Bus last in all 24 months and in every city's priority quadrant
+Bus reliability and step-free access programme
+Head of Bus
+Bus on-time %, complaints per 1,000
+0-12 months
+2
+Micromobility cost share against recovery, r = -0.91
+Fund micromobility separately; watch Munich, Milan, Amsterdam
+Finance Director
+City cost recovery
+6-18 months
+3
+Event uplift up to 36.6%, no fare premium
+Add Metro and Park and Ride event capacity; trial event fare
+Network Planning
+Event revenue per passenger
+0-6 months
+4
+Weekends 25.4% quieter, no punctuality gain
+Move weekend capacity to Bus
+Timetabling
+Weekend cost per passenger
+6-12 months
+5
+Snow costs up to 15.7 on-time points
+Winter resilience plan for all modes
+Operations
+Snow-day on-time %
+6-12 months
+6
+Bus 1.07 kg CO2 per kWh against Metro 2.19
+Bus energy efficiency in capital plan
+Fleet
+CO2 saved per kWh
+12-36 months
+
+The actions are divided into three groups. The quick win (3) safeguards event income. Service changes (1, 4 and 5) shift capacity to the weakest service and prepare the network for winter. Funding decisions (2 and 6) decide how to pay for micromobility and decarbonise the bus fleet. Because the data shows association and not cause, each action should start as a pilot and be evaluated on its dashboard measure.
+Wider value of visualisation
+For the business, the city lollipop translates a deficit into a specific question which can be funded. Socially, the accessibility matrix places complaints next to the finances, where they cannot be traded away unseen. Environmentally, the energy scatter relates fleet selection to carbon outcomes, following the EU urban mobility framework (European Commission, 2021) and Sustainable Development Goal 11 (United Nations, 2015). In the public sector, decisions must be communicated to councils and citizens, and honest visuals can aid that accountability (Cairo, 2016). Locally, filtered city views give each city lead evidence for budget discussions, and at the network level the same views enable the board to compare cities equally.
+Limitations
+Data are a sample of records, not a complete daily record, so ratios were used rather than totals. Capital spending may not be included in operating cost, and no significance tests were performed. Several subgroups are also small. The findings should, therefore, inform further research rather than be treated as proof.
+Conclusion
+On average EcoMove's network is stable, but performance is variable beneath. Bus is the common failing, and snow is the main reliability issue. Deficits are associated with micromobility, and demand is clustered in Paris and Berlin and on weekdays. The visuals and dashboard make these patterns into actions which can be tracked.
